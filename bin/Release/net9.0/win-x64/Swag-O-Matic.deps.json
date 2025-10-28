@@ -9,7 +9,7 @@
     ".NETCoreApp,Version=v9.0/win-x64": {
       "Swag-O-Matic/1.0.0": {
         "dependencies": {
-          "DocumentFormat.OpenXml.Framework": "3.3.0",
+          "DocumentFormat.OpenXml": "3.3.0",
           "Microsoft.NET.ILLink.Tasks": "9.0.10",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "9.0.10"
         },
@@ -744,6 +744,17 @@
           }
         }
       },
+      "DocumentFormat.OpenXml/3.3.0": {
+        "dependencies": {
+          "DocumentFormat.OpenXml.Framework": "3.3.0"
+        },
+        "runtime": {
+          "lib/net8.0/DocumentFormat.OpenXml.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.0.0"
+          }
+        }
+      },
       "DocumentFormat.OpenXml.Framework/3.3.0": {
         "dependencies": {
           "System.IO.Packaging": "8.0.1"
@@ -776,6 +787,13 @@
       "type": "runtimepack",
       "serviceable": false,
       "sha512": ""
+    },
+    "DocumentFormat.OpenXml/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JogRPJNiE6kKvbuCqVRX691pPWeGMqdQgjrUwRYkdpfkMmtElfqAgcRR73geYj7OtBeEpstldZXXzJw27LUI9w==",
+      "path": "documentformat.openxml/3.3.0",
+      "hashPath": "documentformat.openxml.3.3.0.nupkg.sha512"
     },
     "DocumentFormat.OpenXml.Framework/3.3.0": {
       "type": "package",

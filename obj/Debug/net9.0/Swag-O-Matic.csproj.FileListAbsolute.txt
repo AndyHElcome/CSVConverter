@@ -53,9 +53,4 @@ C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\obj\Debug\net9.0\Swag-O-Ma
 C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\obj\Debug\net9.0\Swag-O-Matic.genruntimeconfig.cache
 C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\obj\Debug\net9.0\ref\Swag-O-Matic.dll
 C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Debug\net9.0\DocumentFormat.OpenXml.dll
-C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Debug\net9.0\ClosedXML.dll
-C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Debug\net9.0\ClosedXML.Parser.dll
-C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Debug\net9.0\ExcelNumberFormat.dll
-C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Debug\net9.0\RBush.dll
-C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Debug\net9.0\SixLabors.Fonts.dll
 C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\obj\Debug\net9.0\Swag-O-Matic.sourcelink.json

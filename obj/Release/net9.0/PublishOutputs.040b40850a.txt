@@ -1,0 +1,8 @@
+C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\publish\Swag-O-Matic.exe
+C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\publish\Swag-O-Matic.dll
+C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\publish\Swag-O-Matic.deps.json
+C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\publish\Swag-O-Matic.runtimeconfig.json
+C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\publish\Swag-O-Matic.pdb
+C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\publish\DocumentFormat.OpenXml.dll
+C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\publish\DocumentFormat.OpenXml.Framework.dll
+C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\publish\System.IO.Packaging.dll

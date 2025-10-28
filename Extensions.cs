@@ -1,5 +1,7 @@
 using System.Diagnostics;
-using ClosedXML.Excel;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 public static class Extensions
 {
@@ -33,37 +35,56 @@ public static class Extensions
         return extensions.Contains(Path.GetExtension(filepath)) 
             && (CheckPKZipFormat(filepath) || CheckGZipFormat(filepath));
     }
-    
-    public static void WriteSheet(this XLWorkbook workbook, string sheetName, Stream stream, string delimeter)
+
+    public static void WriteSheetStreaming(this WorkbookPart workbookPart, Sheets sheets, string sheetName, Stream stream, string delimiter, ref uint sheetId)
     {
         var sw = Stopwatch.StartNew();
-        var worksheet = workbook.Worksheets.Add(sheetName);
+
+        var worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+        using var writer = OpenXmlWriter.Create(worksheetPart);
+
+        writer.WriteStartElement(new Worksheet());
+        writer.WriteStartElement(new SheetData());
 
         using var reader = new StreamReader(stream);
-        int row = 1;
+        int rowIndex = 0;
 
-        while (!reader.EndOfStream && row <= 1048576)
+        while (!reader.EndOfStream && rowIndex < 1048576)
         {
             var line = reader.ReadLine();
-            var cells = line?.Split(delimeter);
+            var cells = line?.Split(delimiter);
+            rowIndex++;
+
+            writer.WriteStartElement(new Row { RowIndex = (uint)rowIndex });
 
             if (cells != null)
             {
-                for (int col = 0; col < cells.Length; col++)
+                foreach (var cellValue in cells)
                 {
-                    worksheet.Cell(row, col + 1).Value = cells[col];
+                    writer.WriteElement(new Cell
+                    {
+                        DataType = CellValues.String,
+                        CellValue = new CellValue(cellValue)
+                    });
                 }
             }
 
-            row++;
+            writer.WriteEndElement(); // Row
         }
 
+        writer.WriteEndElement(); // SheetData
+        writer.WriteEndElement(); // Worksheet
+        writer.Close();
+
+        var sheet = new Sheet
+        {
+            Id = workbookPart.GetIdOfPart(worksheetPart),
+            SheetId = sheetId++,
+            Name = sheetName.Length > 31 ? sheetName.Substring(0, 31) : sheetName
+        };
+        sheets.Append(sheet);
+
         sw.Stop();
-
-        if (row >= 1048576)
-            Console.WriteLine("WARNING Exceeding max rows data is truncated, open as CSV instead.");
-
-        Console.WriteLine($"Loaded in {row-1} rows into {sheetName} - {sw.Elapsed:hh\\:mm\\:ss}");
-        return;
+        Console.WriteLine($"Loaded {rowIndex} rows into {sheetName} - {sw.Elapsed:hh\\:mm\\:ss}");
     }
 }
