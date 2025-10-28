@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Swag-O-Matic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f49a9d555d36f9af2437a07352ef221ad879e988")]
 [assembly: System.Reflection.AssemblyProductAttribute("Swag-O-Matic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Swag-O-Matic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
