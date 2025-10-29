@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
-    <RootNamespace>Swag_O_Matic</RootNamespace>
+    <RootNamespace>CSVConverter</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <SelfContained>true</SelfContained>
     <Nullable>enable</Nullable>

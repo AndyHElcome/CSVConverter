@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\CSVConverter.csproj": {}
+    "C:\\Users\\hargreaa\\source\\repos\\AndyHElcome\\CSVConverter\\CSVConverter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\CSVConverter.csproj": {
+    "C:\\Users\\hargreaa\\source\\repos\\AndyHElcome\\CSVConverter\\CSVConverter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\CSVConverter.csproj",
+        "projectUniqueName": "C:\\Users\\hargreaa\\source\\repos\\AndyHElcome\\CSVConverter\\CSVConverter.csproj",
         "projectName": "CSVConverter",
-        "projectPath": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\CSVConverter.csproj",
+        "projectPath": "C:\\Users\\hargreaa\\source\\repos\\AndyHElcome\\CSVConverter\\CSVConverter.csproj",
         "packagesPath": "C:\\Users\\hargreaa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\obj\\",
+        "outputPath": "C:\\Users\\hargreaa\\source\\repos\\AndyHElcome\\CSVConverter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -54,12 +54,6 @@
             "DocumentFormat.OpenXml": {
               "target": "Package",
               "version": "[3.3.0, )"
-            },
-            "Microsoft.NET.ILLink.Tasks": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.10, )",
-              "autoReferenced": true
             }
           },
           "imports": [
@@ -76,10 +70,6 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[9.0.10, 9.0.10]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
               "version": "[9.0.10, 9.0.10]"
             },
             {
