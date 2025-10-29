@@ -1,5 +1,5 @@
 {
-    "dotnet.defaultSolution": "Swag-O-Matic.sln",
+    "dotnet.defaultSolution": "CSVConverter.sln",
     "cSpell.words": [
         "hargreaa"
     ]

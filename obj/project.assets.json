@@ -257,9 +257,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\Swag-O-Matic.csproj",
-      "projectName": "Swag-O-Matic",
-      "projectPath": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\Swag-O-Matic.csproj",
+      "projectUniqueName": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\CSVConverter.csproj",
+      "projectName": "CSVConverter",
+      "projectPath": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\CSVConverter.csproj",
       "packagesPath": "C:\\Users\\hargreaa\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\obj\\",
       "projectStyle": "PackageReference",

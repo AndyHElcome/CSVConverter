@@ -1,2 +1,2 @@
-C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\win-x64\publish\Swag-O-Matic.pdb
-C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\win-x64\publish\Swag-O-Matic.exe
+C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\win-x64\publish\CSVConverter.pdb
+C:\Users\hargreaa\source\repos\ElcomeLtd\Swag-O-Matic\bin\Release\net9.0\win-x64\publish\CSVConverter.exe
