@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CSVConverter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc8d1bf2a82a7141096919621821216ccdbc006b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e2c5d1d11b98a11adc518c1eecca1af6809a1c7")]
 [assembly: System.Reflection.AssemblyProductAttribute("CSVConverter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CSVConverter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
