@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CSVConverter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a90706e577f32e99845cfeac56a50cd7e051ead4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b0984ea33f40ffa0d6ab09e23277b35b2aefcad")]
 [assembly: System.Reflection.AssemblyProductAttribute("CSVConverter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CSVConverter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

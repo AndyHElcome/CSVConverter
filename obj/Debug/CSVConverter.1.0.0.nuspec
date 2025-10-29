@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CSVConverter</id>
+    <version>1.0.0</version>
+    <authors>CSVConverter</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="1b0984ea33f40ffa0d6ab09e23277b35b2aefcad" />
+    <dependencies>
+      <group targetFramework="net9.0">
+        <dependency id="DocumentFormat.OpenXml" version="3.3.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\hargreaa\source\repos\AndyHElcome\CSVConverter\bin\Debug\net9.0\win-x64\CSVConverter.runtimeconfig.json" target="lib\net9.0\CSVConverter.runtimeconfig.json" />
+    <file src="C:\Users\hargreaa\source\repos\AndyHElcome\CSVConverter\bin\Debug\net9.0\win-x64\CSVConverter.dll" target="lib\net9.0\CSVConverter.dll" />
+  </files>
+</package>

@@ -1,0 +1,2 @@
+C:\Users\hargreaa\source\repos\AndyHElcome\CSVConverter\bin\publish\CSVConverter.pdb
+C:\Users\hargreaa\source\repos\AndyHElcome\CSVConverter\bin\publish\CSVConverter.exe
