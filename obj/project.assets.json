@@ -303,11 +303,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\Swag-O-Matic.csproj",
-      "projectName": "Swag-O-Matic",
-      "projectPath": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\Swag-O-Matic.csproj",
+      "projectUniqueName": "C:\\Users\\hargreaa\\source\\repos\\AndyHElcome\\CSVConverter\\CSVConverter.csproj",
+      "projectName": "CSVConverter",
+      "projectPath": "C:\\Users\\hargreaa\\source\\repos\\AndyHElcome\\CSVConverter\\CSVConverter.csproj",
       "packagesPath": "C:\\Users\\hargreaa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\obj\\",
+      "outputPath": "C:\\Users\\hargreaa\\source\\repos\\AndyHElcome\\CSVConverter\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

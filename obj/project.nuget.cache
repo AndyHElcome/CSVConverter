@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pTn7wNTFn5w=",
+  "dgSpecHash": "bQ6tKeITKcA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\hargreaa\\source\\repos\\ElcomeLtd\\Swag-O-Matic\\Swag-O-Matic.csproj",
+  "projectFilePath": "C:\\Users\\hargreaa\\source\\repos\\AndyHElcome\\CSVConverter\\CSVConverter.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hargreaa\\.nuget\\packages\\closedxml\\0.105.0\\closedxml.0.105.0.nupkg.sha512",
     "C:\\Users\\hargreaa\\.nuget\\packages\\closedxml.parser\\2.0.0\\closedxml.parser.2.0.0.nupkg.sha512",
