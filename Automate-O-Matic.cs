@@ -1,64 +1,106 @@
 ﻿using System.Diagnostics;
 using System.IO.Compression;
-using System.Threading.Tasks;
-
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Office.PowerPoint.Y2021.M06.Main;
 
 internal class Program
 {
+    private static void ShowHelp()
+    {
+        var helpDialog = $"""
+            This tool takes an array of any txt/csv, folder or compressed folder.
+            Any valid files will be written as sheets in one excel spreadsheet in the folder of the first valid file.
+            If a file reaches the max row count of xlsx (1048576) then a second sheet will be created.
+
+            The delimiter of the split will default to tab, available delimiters are:
+                [{string.Join(", ", delimiters.Select(c => $"\"{c}\""))}]
+            Text qualifiers are not supported currently.
+
+            To change the delimiter define a delimiter in the array, it MUST precede any files
+                e.g [",", "C:\dir\file.csv"]
+            Delimiters can be defined multiple times.
+                e.g [",", "C:\dir\file.csv", "tab", "C:\dir\file.zip"]
+
+            created by Andrew and Josh.
+            """;
+        Console.WriteLine(helpDialog);
+    }
+
+    private static bool ShowHelpRequired(string arg)
+    {
+        string[] helpArgs = ["-h", "--help", "help", "/?"];
+        return helpArgs.Contains(arg);
+    }
+
+    private static readonly string[] delimiters = ["space", "tab", ",", "|", ";", ",space", ";space"];
+
     private static void Main(string[] args)
     {
-#if DEBUG
-        args = ["C:\\Users\\hargreaa\\Downloads\\EUG.zip"];
-#endif
-
         var sw = Stopwatch.StartNew();
 
-        if (args.Length < 1)
+        if (args.Length < 1 || ShowHelpRequired(args[0]))
         {
-            Console.WriteLine("Number of arguments provided is not equal to one");
+            ShowHelp();
             return;
         }
 
-        string filepath = args[0].TrimEnd('\\');
-        string delimiter = args.Length >= 2 ? args[1] : "\t";
-        string outputFilename = Path.ChangeExtension(filepath, ".xlsx");
-
-        using var spreadsheet = SpreadsheetDocument.Create(outputFilename, SpreadsheetDocumentType.Workbook);
-        var workbookPart = spreadsheet.AddWorkbookPart();
-        workbookPart.Workbook = new Workbook();
-        var sheets = workbookPart.Workbook.AppendChild(new Sheets());
+        string delimiter = "\t";
+        OutputSpreadSheet? outputSpreadSheet = null;
 
         uint sheetId = 1;
-
-        if (Directory.Exists(filepath))
+        foreach (string arg in args)
         {
-            foreach (string file in Directory.GetFiles(filepath))
+            var filepath = arg.TrimEnd('\\');
+
+            if (Directory.Exists(filepath))
             {
-                Console.WriteLine($"Reading file {file}");
-                using var stream = File.OpenRead(file);
-                workbookPart.WriteSheetStreaming(sheets, Path.GetFileNameWithoutExtension(file), stream, delimiter, ref sheetId);
+                foreach (string file in Directory.GetFiles(filepath).Where(c => c.IsTextFile()))
+                {
+                    outputSpreadSheet ??= new(filepath);
+                    Console.WriteLine($"Reading file {file}");
+                    using var stream = File.OpenRead(file);
+                    outputSpreadSheet.WorkbookPart.WriteSheetStreaming(outputSpreadSheet.Sheets, Path.GetFileNameWithoutExtension(file), stream, delimiter, ref sheetId);
+                }
+            }
+            else if (File.Exists(filepath) && filepath.IsTextFile())
+            {
+                outputSpreadSheet ??= new(filepath);
+                Console.WriteLine($"Reading file {filepath}");
+                using var stream = File.OpenRead(filepath);
+                outputSpreadSheet.WorkbookPart.WriteSheetStreaming(outputSpreadSheet.Sheets, Path.GetFileNameWithoutExtension(filepath), stream, delimiter, ref sheetId);
+            }
+            else if (File.Exists(filepath) && filepath.IsZipFile())
+            {
+                using var zip = new ZipArchive(File.OpenRead(filepath), ZipArchiveMode.Read);
+                foreach (var entry in zip.Entries.Where(c => c.Name.IsTextFile()))
+                {
+                    outputSpreadSheet ??= new(filepath);
+                    Console.WriteLine($"Reading file {entry.FullName}");
+                    using var stream = entry.Open();
+                    outputSpreadSheet.WorkbookPart.WriteSheetStreaming(outputSpreadSheet.Sheets, Path.GetFileNameWithoutExtension(entry.Name), stream, delimiter, ref sheetId);
+                }
+            }
+            else if (delimiters.Contains(arg))
+            {
+                delimiter = arg switch
+                {
+                    "tab" => "\t",
+                    "space" => " ",
+                    ",space" => ", ",
+                    ";space" => "; ",
+                    _ => arg
+                };
+
+                Console.WriteLine($"Changed delimiter to \"{arg}\" (\"{delimiter}\")");
             }
         }
 
-
-        if (File.Exists(filepath) && filepath.IsZipFile())
-        {
-            using var zip = new ZipArchive(File.OpenRead(filepath), ZipArchiveMode.Read);
-            foreach (var entry in zip.Entries.Where(e => Path.GetExtension(e.Name) == ".txt"))
-            {
-                Console.WriteLine($"Reading file {entry.FullName}");
-                using var stream = entry.Open();
-                workbookPart.WriteSheetStreaming(sheets, Path.GetFileNameWithoutExtension(entry.Name), stream, delimiter, ref sheetId);
-            }
-        }
-
-        spreadsheet.Dispose();
+        outputSpreadSheet?.Dispose();
 
         sw.Stop();
-        Console.WriteLine($"Excel file created successfully: {outputFilename} - {sw.Elapsed:hh\\:mm\\:ss}");
-    }
 
+        if (outputSpreadSheet is not null)
+            Console.WriteLine($"Excel file created successfully: {outputSpreadSheet.OutputFilename} - {sw.Elapsed:hh\\:mm\\:ss}");
+        else
+            Console.WriteLine($"No file created - {sw.Elapsed:hh\\:mm\\:ss}");
+    }
 }

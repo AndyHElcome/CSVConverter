@@ -36,26 +36,16 @@ public static class Extensions
             && (CheckPKZipFormat(filepath) || CheckGZipFormat(filepath));
     }
 
-    public static void WriteSheetStreaming(this WorkbookPart workbookPart, Sheets sheets, string sheetName, Stream stream, string delimiter, ref uint sheetId)
+    public static bool IsTextFile(this string filepath)
     {
-        var sw = Stopwatch.StartNew();
+        string[] extensions = [".txt", ".csv"];
 
-        var worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
-        using var writer = OpenXmlWriter.Create(worksheetPart);
+        return extensions.Contains(Path.GetExtension(filepath));
+    }
 
-        writer.WriteStartElement(new Worksheet());
-        writer.WriteStartElement(new SheetData());
-
-        using var reader = new StreamReader(stream);
-        int rowIndex = 0;
-
-        while (!reader.EndOfStream && rowIndex < 1048576)
-        {
-            var line = reader.ReadLine();
-            var cells = line?.Split(delimiter);
-            rowIndex++;
-
-            writer.WriteStartElement(new Row { RowIndex = (uint)rowIndex });
+    public static void WriteRow(this OpenXmlWriter writer, string[]? cells, int rowIndex)
+    {        
+        writer.WriteStartElement(new Row { RowIndex = (uint)rowIndex });
 
             if (cells != null)
             {
@@ -69,22 +59,65 @@ public static class Extensions
                 }
             }
 
-            writer.WriteEndElement(); // Row
+        writer.WriteEndElement();
+    }
+
+    public static void WriteSheetStreaming(this WorkbookPart workbookPart, Sheets sheets, string sheetName, Stream stream, string delimiter, ref uint sheetId, string? headerLine = null, int? sheetRoll = null)
+    {
+        var sw = Stopwatch.StartNew();
+
+        var worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+        using var writer = OpenXmlWriter.Create(worksheetPart);
+
+        writer.WriteStartElement(new Worksheet());
+        writer.WriteStartElement(new SheetData());
+
+        using var reader = new StreamReader(stream);
+
+        string? tempHeaderLine = null;
+
+        int rowIndex = 1;
+        if (headerLine is not null)
+        {
+            var line = headerLine;
+            var cells = line?.Split(delimiter);
+
+            writer.WriteRow(cells, rowIndex);
+
+            rowIndex++;
+        }
+
+        while (!reader.EndOfStream && rowIndex <= 1048576)
+        {
+            var line = reader.ReadLine();
+            if (rowIndex == 1 && headerLine is null)
+                tempHeaderLine = line;
+
+            var cells = line?.Split(delimiter);
+
+            writer.WriteRow(cells, rowIndex);
+
+            rowIndex++;
         }
 
         writer.WriteEndElement(); // SheetData
         writer.WriteEndElement(); // Worksheet
         writer.Close();
 
+        string newSheetName = sheetRoll is null ? sheetName : $"{sheetName}-{sheetRoll}";
         var sheet = new Sheet
         {
             Id = workbookPart.GetIdOfPart(worksheetPart),
             SheetId = sheetId++,
-            Name = sheetName.Length > 31 ? sheetName.Substring(0, 31) : sheetName
+            Name = newSheetName.Length > 31 ? newSheetName.Substring(0, 31) : newSheetName
         };
         sheets.Append(sheet);
 
         sw.Stop();
-        Console.WriteLine($"Loaded {rowIndex} rows into {sheetName} - {sw.Elapsed:hh\\:mm\\:ss}");
+        Console.WriteLine($"Loaded {rowIndex} rows into {newSheetName} - {sw.Elapsed:hh\\:mm\\:ss}");
+
+
+        if (!reader.EndOfStream)
+            workbookPart.WriteSheetStreaming(sheets, sheetName, stream, delimiter, ref sheetId, headerLine is null ? tempHeaderLine : headerLine, sheetRoll is null ? 2 : sheetRoll++);
     }
 }

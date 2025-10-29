@@ -1,3 +1,6 @@
 {
-    "dotnet.defaultSolution": "Swag-O-Matic.sln"
+    "dotnet.defaultSolution": "Swag-O-Matic.sln",
+    "cSpell.words": [
+        "hargreaa"
+    ]
 }
